@@ -3,6 +3,7 @@ package com.example.demoapi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -38,6 +39,10 @@ public class LoginActivity extends AppCompatActivity {
         RetrofitCallbacksController.getInstace().fillcontext(LoginActivity.this);
     }
 
+
+
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -50,7 +55,10 @@ public class LoginActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(LoginActivity.this);
     }
 
-@Subscribe(threadMode=ThreadMode.MAIN)
+
+
+
+@Subscribe(threadMode = ThreadMode.MAIN)
 public void onEventMainThread(RetrofitCallbacksController.MessageEvent messageEvent){
         progressDialog.dismiss();
     Log.e("response","call"+messageEvent.body);
@@ -64,8 +72,10 @@ public void onEventMainThread(RetrofitCallbacksController.MessageEvent messageEv
             Gson gson = new Gson();
             LoginResponseModel loginResponseModel = gson.fromJson(messageEvent.body, LoginResponseModel.class);
             Log.e("loginrespoise", "call" + loginResponseModel.getResponse());
-            if(loginResponseModel.getResponse().equals(3)){
+            if(loginResponseModel.getResponse().equals("3")){
+                startActivity ( new Intent (this,MainActivity2.class) );
                 Toast.makeText(getApplicationContext(),loginResponseModel.getMessage(),Toast.LENGTH_SHORT).show();
+
             }else{
                 Toast.makeText(getApplicationContext(),loginResponseModel.getMessage(),Toast.LENGTH_SHORT).show();
             }
@@ -100,6 +110,9 @@ public void onEventMainThread(RetrofitCallbacksController.MessageEvent messageEv
             }
         });
     }
+
+
+
     public void loadLoginApiParams(){
         JsonObject CheckUserObj = new JsonObject();
         JSONObject jsonObject = new JSONObject();

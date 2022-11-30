@@ -47,6 +47,8 @@ public class RetrofitCallbacksController {
         this.context = context;
     }
 
+
+
     public boolean checkNetwork() {
         boolean wifiAvailable = false;
         boolean mobileAvailable = false;
@@ -62,6 +64,10 @@ public class RetrofitCallbacksController {
         }
         return wifiAvailable || mobileAvailable;
     }
+
+
+
+
     public void ApiCallbacksForAllPosts(Context context, String NotifyMsg, String EndUrl, JsonObject jsonobj, String accessToken) {
         this.context = context;
         ApiCollection apiCollection = getClient().create(ApiCollection.class);

@@ -20,6 +20,6 @@ public interface ApiCollection {
 
 
     @GET
-    Call<ResponseBody> apisCallingFotget( @Url String url);
+    Call<ResponseBody> apisCallingForget( @Url String url);
 
 }
